@@ -12,15 +12,14 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
   const rotate = useTransform(scrollY, [0, 500], [0, 10]);
 
-  // Words for the marquee
-  const marqueeWords = ["СТРАТЕГИЯ", "КОПИРАЙТИНГ", "СТОРИТЕЛЛИНГ"];
+  // Updated to only loop "СТРАТЕГИЯ" as requested
+  const marqueeWord = "СТРАТЕГИЯ";
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-20">
       
-      {/* Left Side Scroll Rail (New Concept) */}
+      {/* Left Side Scroll Rail - Desktop Only */}
       <div className="absolute left-6 top-0 bottom-0 hidden xl:flex flex-col items-center justify-end pb-12 z-20 w-12 mix-blend-darken pointer-events-none">
-         {/* Top decorative spinner */}
          <div className="absolute top-32">
              <motion.div
                 animate={{ rotate: 360 }}
@@ -30,9 +29,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
              </motion.div>
          </div>
 
-         {/* Rail Line */}
          <div className="relative w-[1px] h-[60vh] bg-ink/10 overflow-hidden">
-             {/* Moving Scanner Light */}
              <motion.div
                 animate={{ y: [-100, 800] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -40,7 +37,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
              />
          </div>
 
-         {/* Rotated Text */}
          <div className="mt-8 writing-vertical-rl transform -rotate-180">
              <p className="font-mono font-bold text-[10px] tracking-[0.3em] text-ink uppercase flex items-center gap-4 opacity-60">
                 <span className="w-1 h-1 bg-ink rounded-full"></span>
@@ -49,27 +45,19 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
          </div>
       </div>
 
-      {/* Decorative Shapes (Abstract figures) */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[10%] right-[5%] w-32 h-32 border-[10px] border-neon-yellow rounded-full z-0 opacity-50"
-      />
-      <div className="absolute top-[20%] left-[5%] w-16 h-16 bg-neon-blue transform rotate-45 z-0"></div>
-      <div className="absolute bottom-[10%] left-[10%] w-24 h-24 bg-ink rounded-full mix-blend-multiply opacity-5 z-0"></div>
+      {/* Decorative Shapes - Simplified for performance */}
+      <div className="hidden md:block absolute top-[10%] right-[5%] w-32 h-32 border-[10px] border-neon-yellow rounded-full z-0 opacity-50 animate-spin-slow" />
+      <div className="hidden md:block absolute top-[20%] left-[5%] w-16 h-16 bg-neon-blue transform rotate-45 z-0" />
+      <div className="hidden md:block absolute bottom-[10%] left-[10%] w-24 h-24 bg-ink rounded-full mix-blend-multiply opacity-5 z-0" />
 
-      {/* Marquee Background - Straightened */}
+      {/* Marquee Background - Single Word Loop */}
       <div className="absolute top-1/2 left-0 w-full -translate-y-1/2 opacity-[0.06] pointer-events-none overflow-hidden z-0">
         <div className="flex whitespace-nowrap animate-marquee">
-          {/* Duplicating 4 times to ensure length > 200vw for seamless loop even on wide screens */}
-          {[...Array(4)].map((_, setIndex) => (
-             <React.Fragment key={setIndex}>
-                {marqueeWords.map((word, i) => (
-                   <span key={`${setIndex}-${i}`} className="text-[15vw] font-black uppercase mx-8 text-ink font-serif">
-                     {word}
-                   </span>
-                ))}
-             </React.Fragment>
+          {/* Creating a long seamless strip */}
+          {[...Array(8)].map((_, i) => (
+             <span key={i} className="text-[15vw] font-black uppercase mx-8 text-ink font-serif">
+               {marqueeWord}
+             </span>
           ))}
         </div>
       </div>
@@ -92,7 +80,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
                         Вячеслав <br/>
                         <span className="block mt-2 text-ink transition-colors duration-300 relative inline-block">
                             Бобович
-                            {/* Underline Decoration */}
                             <span className="absolute bottom-2 left-0 w-full h-6 bg-neon-yellow -z-10 transform -skew-x-12 opacity-60"></span>
                         </span>
                     </h1>
@@ -123,14 +110,11 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
                     transition={{ duration: 1, delay: 0.2 }}
                     className="relative z-10 w-72 md:w-96 aspect-[3/4]"
                  >
-                    {/* Decorative Elements behind photo */}
                     <div className="absolute -top-8 -right-8 w-full h-full border-[3px] border-neon-blue rounded-full rounded-br-none"></div>
                     <div className="absolute -bottom-8 -left-8 w-full h-full bg-neon-yellow rounded-full rounded-tl-none shadow-[10px_10px_0px_rgba(0,0,0,0.1)]"></div>
                     
-                    {/* Triangle Shape */}
                     <div className="absolute top-1/2 -right-12 w-0 h-0 border-l-[20px] border-l-transparent border-b-[30px] border-b-neon-pink border-r-[20px] border-r-transparent transform rotate-45"></div>
 
-                    {/* Image Container - Ensure z-index is higher and content is visible */}
                     <div className="absolute inset-0 overflow-hidden rounded-t-full rounded-b-none border-[3px] border-ink bg-[#1a1a1a] shadow-2xl z-20">
                          <img 
                             src="https://i.postimg.cc/zv2pCLGr/photo-2025-11-07-105.jpg" 
@@ -140,11 +124,10 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
                         />
                     </div>
 
-                    {/* Floating Badge */}
                     <motion.div 
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-10 -left-12 bg-white p-4 shadow-[8px_8px_0px_#111] border-2 border-ink rounded-lg max-w-[200px] rotate-[-3deg] z-30"
+                        className="absolute bottom-10 -left-12 bg-white p-4 shadow-[8px_8px_0px_#111] border-2 border-ink rounded-lg max-w-[200px] rotate-[-3deg] z-30 hidden md:block"
                     >
                         <p className="text-[10px] font-bold uppercase tracking-widest text-neon-blue mb-1 font-mono">Экспертиза</p>
                         <p className="text-sm font-serif font-bold italic text-ink leading-tight">"Слова, которые продают. Истории, которые живут."</p>

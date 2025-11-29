@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, MessageCircle, Search, Bell, CheckCircle2, X, ExternalLink } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Search, Bell, CheckCircle2, X } from 'lucide-react';
 import Contact from './Contact';
 
 interface PortfolioPageProps {
@@ -73,7 +73,6 @@ const Card: React.FC<{ item: TaskItem; index: number; onClick: (item: TaskItem) 
 const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
   const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
   
-  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -197,7 +196,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
           className="py-12 md:py-32"
         >
             <div>
-                <h1 className="text-5xl md:text-9xl font-serif font-black text-ink mb-6 md:mb-8 leading-[0.9]">
+                <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif font-black text-ink mb-6 md:mb-8 leading-[0.9]">
                     Архив <br/>
                     <span className="relative inline-block px-2">
                         <span className="relative z-10">Задач</span>
@@ -284,7 +283,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
                 >
                     <button
                         onClick={() => setSelectedTask(null)}
-                        className="absolute top-4 right-4 z-20 p-2 md:p-3 bg-white rounded-full border-2 border-ink hover:bg-neon-yellow transition-colors shadow-[2px_2px_0px_#111] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px]"
+                        className="absolute top-4 right-4 z-20 p-2 md:p-3 bg-white rounded-full border-2 border-ink hover:bg-neon-yellow transition-colors shadow-[2px_2px_0px_#111] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] cursor-pointer"
                     >
                         <X size={20} className="md:w-6 md:h-6 text-ink" strokeWidth={3} />
                     </button>
