@@ -20,7 +20,7 @@ const SectionHeader = ({ title, icon: Icon, colorClass }: { title: string, icon:
     <div className={`p-3 rounded-full border-2 border-ink bg-white shadow-[4px_4px_0px_#111] ${colorClass}`}>
       <Icon size={24} className="text-ink" />
     </div>
-    <h3 className="text-3xl md:text-5xl font-serif font-black text-ink uppercase">{title}</h3>
+    <h3 className="text-2xl md:text-5xl font-serif font-black text-ink uppercase break-words">{title}</h3>
   </div>
 );
 
@@ -33,7 +33,7 @@ const Card: React.FC<{ item: TaskItem; index: number; onClick: (item: TaskItem) 
   <motion.div 
     variants={cardVariants}
     onClick={() => onClick(item)}
-    className="group relative bg-white border-2 border-ink p-8 rounded-[2rem] shadow-[8px_8px_0px_rgba(0,0,0,0.1)] hover:shadow-[12px_12px_0px_#ccff00] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col cursor-none hover:border-neon-blue active:scale-[0.98]"
+    className="group relative bg-white border-2 border-ink p-6 md:p-8 rounded-[2rem] shadow-[8px_8px_0px_rgba(0,0,0,0.1)] hover:shadow-[12px_12px_0px_#ccff00] hover:-translate-y-1 transition-all duration-300 h-full flex flex-col cursor-pointer md:cursor-none hover:border-neon-blue active:scale-[0.98]"
   >
     <div className="absolute top-6 right-6 text-4xl font-serif font-black text-ink/5 select-none group-hover:text-ink/10 transition-colors">
       {String(index + 1).padStart(2, '0')}
@@ -41,13 +41,13 @@ const Card: React.FC<{ item: TaskItem; index: number; onClick: (item: TaskItem) 
     
     <div className="flex flex-wrap gap-2 mb-6 relative z-10 pr-8">
       {item.tags.map((tag: string, i: number) => (
-        <span key={i} className="px-3 py-1 bg-paper-off border border-ink/20 rounded-full text-xs font-bold uppercase tracking-wider font-mono text-ink/60 group-hover:border-ink/40 transition-colors">
+        <span key={i} className="px-3 py-1 bg-paper-off border border-ink/20 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider font-mono text-ink/60 group-hover:border-ink/40 transition-colors">
           {tag}
         </span>
       ))}
     </div>
 
-    <h3 className="text-2xl font-serif font-black text-ink mb-4 leading-tight group-hover:text-neon-blue transition-colors block break-words hyphens-auto">
+    <h3 className="text-xl md:text-2xl font-serif font-black text-ink mb-4 leading-tight group-hover:text-neon-blue transition-colors block break-words hyphens-auto">
         {item.title}
     </h3>
 
@@ -175,43 +175,43 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
       className="min-h-screen bg-[#F5F5F5] pt-24 pb-0 relative"
     >
       {/* Fixed Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-6 pointer-events-none">
+      <div className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 pointer-events-none">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <button 
             onClick={onBack}
-            className="pointer-events-auto flex items-center gap-3 px-6 py-3 bg-white border-2 border-ink rounded-full shadow-[4px_4px_0px_#111] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group"
+            className="pointer-events-auto flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 bg-white border-2 border-ink rounded-full shadow-[4px_4px_0px_#111] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group"
           >
-            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="font-bold font-mono uppercase tracking-wider">Назад</span>
+            <ArrowLeft size={18} className="md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-bold font-mono uppercase tracking-wider text-sm md:text-base">Назад</span>
           </button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="py-20 md:py-32"
+          className="py-12 md:py-32"
         >
             <div>
-                <h1 className="text-6xl md:text-9xl font-serif font-black text-ink mb-8 leading-[0.9]">
+                <h1 className="text-5xl md:text-9xl font-serif font-black text-ink mb-6 md:mb-8 leading-[0.9]">
                     Архив <br/>
                     <span className="relative inline-block px-2">
                         <span className="relative z-10">Задач</span>
-                        <span className="absolute bottom-4 left-0 w-full h-8 bg-neon-blue -z-0 transform skew-x-12 opacity-100 mix-blend-multiply"></span>
+                        <span className="absolute bottom-2 md:bottom-4 left-0 w-full h-4 md:h-8 bg-neon-blue -z-0 transform skew-x-12 opacity-100 mix-blend-multiply"></span>
                     </span>
                 </h1>
-                <p className="text-xl md:text-2xl font-mono text-ink/60 max-w-2xl leading-relaxed border-l-4 border-neon-yellow pl-6">
+                <p className="text-base md:text-2xl font-mono text-ink/60 max-w-2xl leading-relaxed border-l-4 border-neon-yellow pl-4 md:pl-6">
                     Здесь собраны примеры реальных задач и подходов к их решению. Нажмите на карточку, чтобы узнать подробности.
                 </p>
             </div>
         </motion.div>
 
         {/* Social Media Section */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
             <SectionHeader title="Посты для соцсетей" icon={MessageCircle} colorClass="bg-neon-yellow/20" />
             <motion.div 
               variants={containerVariants}
@@ -227,7 +227,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
         </section>
 
         {/* SEO Section */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
             <SectionHeader title="SEO Тексты" icon={Search} colorClass="bg-neon-blue/20" />
             <motion.div 
               variants={containerVariants}
@@ -243,7 +243,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
         </section>
 
         {/* Push Section */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
             <SectionHeader title="Push Уведомления" icon={Bell} colorClass="bg-neon-pink/20" />
             <motion.div 
               variants={containerVariants}
@@ -273,28 +273,28 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedTask(null)}
-                className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-ink/80 backdrop-blur-sm cursor-none"
+                className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-ink/80 backdrop-blur-sm"
             >
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0, y: 50 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     exit={{ scale: 0.9, opacity: 0, y: 50 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-2xl overflow-hidden relative border-4 border-ink"
+                    className="bg-white w-full max-w-5xl max-h-[85vh] md:max-h-[90vh] overflow-y-auto rounded-3xl md:rounded-[2.5rem] shadow-2xl relative border-4 border-ink"
                 >
                     <button
                         onClick={() => setSelectedTask(null)}
-                        className="absolute top-4 right-4 z-20 p-3 bg-white rounded-full border-2 border-ink hover:bg-neon-yellow transition-colors shadow-[2px_2px_0px_#111] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px]"
+                        className="absolute top-4 right-4 z-20 p-2 md:p-3 bg-white rounded-full border-2 border-ink hover:bg-neon-yellow transition-colors shadow-[2px_2px_0px_#111] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px]"
                     >
-                        <X size={24} className="text-ink" strokeWidth={3} />
+                        <X size={20} className="md:w-6 md:h-6 text-ink" strokeWidth={3} />
                     </button>
 
                     <div className="grid md:grid-cols-2 gap-0">
                         {/* Image Side */}
-                        <div className="bg-paper-off border-b-4 md:border-b-0 md:border-r-4 border-ink flex items-center justify-center p-8 md:p-12 min-h-[300px] relative overflow-hidden">
+                        <div className="bg-paper-off border-b-4 md:border-b-0 md:border-r-4 border-ink flex items-center justify-center p-6 md:p-12 min-h-[200px] relative overflow-hidden">
                              <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `radial-gradient(#111 1px, transparent 1px)`, backgroundSize: '20px 20px' }}></div>
                              {selectedTask.imageUrl ? (
-                                <img src={selectedTask.imageUrl} alt={selectedTask.title} className="w-full h-auto rounded-xl shadow-[8px_8px_0px_rgba(0,0,0,0.1)] border-2 border-ink relative z-10 transform rotate-1 hover:rotate-0 transition-transform duration-500" />
+                                <img src={selectedTask.imageUrl} alt={selectedTask.title} className="w-full h-auto rounded-xl shadow-[8px_8px_0px_rgba(0,0,0,0.1)] border-2 border-ink relative z-10" />
                              ) : (
                                 <div className="w-full h-64 bg-gray-200 rounded-xl flex items-center justify-center border-2 border-dashed border-ink/20">
                                     <span className="text-gray-400 font-mono">No Preview</span>
@@ -303,16 +303,16 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
                         </div>
                         
                         {/* Content Side */}
-                        <div className="p-8 md:p-12 flex flex-col bg-white">
+                        <div className="p-6 md:p-12 flex flex-col bg-white">
                              <div className="flex flex-wrap gap-2 mb-6">
                                 {selectedTask.tags.map((tag, i) => (
-                                    <span key={i} className="px-3 py-1 bg-neon-yellow border border-ink rounded-full text-xs font-bold uppercase tracking-wider font-mono text-ink">
+                                    <span key={i} className="px-3 py-1 bg-neon-yellow border border-ink rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider font-mono text-ink">
                                     {tag}
                                     </span>
                                 ))}
                             </div>
                             
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-black text-ink mb-6 leading-tight break-words hyphens-auto">
+                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif font-black text-ink mb-6 leading-tight break-words hyphens-auto">
                                 {selectedTask.title}
                             </h2>
                             
@@ -322,7 +322,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onBack }) => {
                                 </span>
                             </div>
 
-                            <div className="prose prose-lg text-ink/80 font-mono leading-relaxed mb-8">
+                            <div className="prose prose-lg text-ink/80 font-mono leading-relaxed mb-8 text-sm md:text-base">
                                 <p>{selectedTask.task}</p>
                             </div>
                             
