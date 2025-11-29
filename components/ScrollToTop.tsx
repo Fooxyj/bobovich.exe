@@ -35,7 +35,7 @@ const ScrollToTop: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-[9999] p-3 md:p-4 bg-white border-2 border-ink rounded-full shadow-[4px_4px_0px_#111] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-neon-yellow transition-all duration-200 group flex items-center justify-center cursor-pointer"
+          className="fixed bottom-6 right-6 z-[10005] p-3 md:p-4 bg-white border-2 border-ink rounded-full shadow-[4px_4px_0px_#111] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-neon-yellow transition-all duration-200 group flex items-center justify-center cursor-pointer"
           aria-label="Вернуться наверх"
         >
           <ArrowUp className="w-6 h-6 text-ink group-hover:text-ink transition-colors" strokeWidth={3} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Asterisk } from 'lucide-react';
 
@@ -11,6 +11,18 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
   const rotate = useTransform(scrollY, [0, 500], [0, 10]);
+  
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Updated to only loop "СТРАТЕГИЯ" as requested
   const marqueeWord = "СТРАТЕГИЯ";
@@ -101,7 +113,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortfolio }) => {
             </div>
 
             <motion.div 
-                style={{ y: y2, rotate: rotate }} 
+                style={isMobile ? {} : { y: y2, rotate: rotate }}
                 className="lg:col-span-5 order-1 lg:order-2 flex justify-center relative mt-10 lg:mt-0"
             >
                  <motion.div
